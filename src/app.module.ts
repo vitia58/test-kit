@@ -2,10 +2,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { HotelModule } from './hotel/hotel.module';import { RoomModule } from './room/room.module';
+import { HotelModule } from './hotel/hotel.module';
 
 @Module({
   imports: [
@@ -21,8 +22,8 @@ import { HotelModule } from './hotel/hotel.module';import { RoomModule } from '
     }),
     AuthModule,
     HotelModule,
-    ServeStaticModule.forRoot({rootPath: '/upload', serveRoot: '/files'}),
-    RoomModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'upload'), serveRoot: '/files'})
   ],
   controllers: [AppController],
   providers: [AppService],

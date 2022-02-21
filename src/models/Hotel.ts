@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as mongoose from 'mongoose';
+import { pathToUrl } from 'src/others/constants';
 
 export type HotelDocument = Hotel & Document;
 
@@ -14,7 +15,7 @@ export class Hotel {
   @Prop()
   description: string;
 
-  @Prop()
+  @Prop({transform:pathToUrl})
   photo: string;
 
   @Prop()
@@ -28,3 +29,19 @@ export class Hotel {
 }
 
 export const HotelSchema = SchemaFactory.createForClass(Hotel);
+/*
+[
+  {
+    "title": "VitiaCraft",
+    "description": "vitia's hostel",
+    "photo": "image1.jpg",
+    "address": "vitia street"
+  },
+  {
+    "title": "SlavaC7",
+    "description": "slava's hostel",
+    "photo": "image2.jpg",
+    "address": "slava street"
+  },  
+]
+*/

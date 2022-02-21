@@ -18,15 +18,12 @@ export class AuthService {
   async login(cLoginDTO:CLoginDTO){
     const {login,password} = cLoginDTO
     const user = await this.userModel.findOne({login})
-    if(user){
-      if(await comparePassword(password,user.password)){
-        return {
-          login:true,
-          password:true,
-          access_token:this.jwtService.sign({id:user._id}),
-        }
-      }else return {login:true,password:false,access_token:null}
-    }else return {login:false,password:false,access_token:null}
+    if(user&&await comparePassword(password,user.password)){
+      return {
+        access_token:this.jwtService.sign({id:user._id}),
+        money:user.money
+      }
+    }else return {access_token:null,money:0}
   }
 
   async register(registerDTO:CRegisterDTO){
@@ -36,7 +33,8 @@ export class AuthService {
     const user = await new this.userModel({...registerDTO,password:await hashPassword(password)}).save()
     const payload = {id:user._id}
     return {
-      access_token:this.jwtService.sign(payload)
+      access_token:this.jwtService.sign(payload),
+      money:user.money
     }
   }
 }

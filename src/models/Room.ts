@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { Hotel } from './Hotel';
+import { pathToUrl } from 'src/others/constants';
 
 export type RoomDocument = Room & Document;
 
@@ -11,6 +12,24 @@ export class Room {
 
   @Prop({type:Types.ObjectId,ref:Hotel.name})
   hotel: string;
+
+  @Prop()
+  owner:string|null
+
+  @Prop()
+  price:number
+
+  @Prop()
+  number:string
+
+  @Prop({transform:pathToUrl})
+  photo:string
+
+  @Prop()
+  roomsAmount:number
+
+  @Prop()
+  bedsAmount:number
 
   @Prop({transform:()=>undefined})
   createdAt: Date;

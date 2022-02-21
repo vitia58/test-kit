@@ -14,7 +14,7 @@ export class HotelService {
       private readonly roomModel: Model<RoomDocument>,
     ) {}
   async list():Promise<CHotelListResponseDTO> {
-    const list = await this.hotelModel.find().exec()
+    const list = await this.hotelModel.find({}).exec()
     return list.map(h=>h.toObject()).map(({_id,title,description,photo})=>({id:_id+"",title,description,photo}))
   }
   async get(id: string){
