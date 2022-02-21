@@ -21,12 +21,12 @@ export class AuthService {
     if(user){
       if(await comparePassword(password,user.password)){
         return {
-          email:true,
+          login:true,
           password:true,
           access_token:this.jwtService.sign({id:user._id}),
         }
-      }else return {email:true,password:false,access_token:null}
-    }else return {email:false,password:false,access_token:null}
+      }else return {login:true,password:false,access_token:null}
+    }else return {login:false,password:false,access_token:null}
   }
 
   async register(registerDTO:CRegisterDTO){

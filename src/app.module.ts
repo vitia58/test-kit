@@ -5,7 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { HotelModule } from './hotel/hotel.module';
+import { HotelModule } from './hotel/hotel.module';import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -21,7 +21,8 @@ import { HotelModule } from './hotel/hotel.module';
     }),
     AuthModule,
     HotelModule,
-    ServeStaticModule.forRoot({rootPath: '/upload', serveRoot: '/files'})
+    ServeStaticModule.forRoot({rootPath: '/upload', serveRoot: '/files'}),
+    RoomModule,
   ],
   controllers: [AppController],
   providers: [AppService],

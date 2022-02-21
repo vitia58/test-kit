@@ -1,30 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 import * as mongoose from 'mongoose';
+import { Hotel } from './Hotel';
 
-export type HotelDocument = Hotel & Document;
+export type RoomDocument = Room & Document;
 
 @Schema({ timestamps: true })
-export class Hotel {
+export class Room {
   _id: Types.ObjectId;
 
-  @Prop()
-  title: string;
-
-  @Prop()
-  description: string;
-
-  @Prop()
-  photo: string;
-
-  @Prop()
-  address: string;
+  @Prop({type:Types.ObjectId,ref:Hotel.name})
+  hotel: string;
 
   @Prop({transform:()=>undefined})
   createdAt: Date;
-  
   @Prop({transform:()=>undefined})
   updatedAt: Date;
 }
 
-export const HotelSchema = SchemaFactory.createForClass(Hotel);
+export const RoomSchema = SchemaFactory.createForClass(Room);
