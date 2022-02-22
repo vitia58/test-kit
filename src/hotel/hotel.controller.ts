@@ -9,7 +9,7 @@ export class HotelController {
     constructor(private readonly service:HotelService){}
     @Get("list")
     async list(){
-        console.log(await this.service.list())
+        // console.log(await this.service.list())
         return this.service.list()
     }
     @Get("info/:id")

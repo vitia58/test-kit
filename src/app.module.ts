@@ -7,6 +7,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { HotelModule } from './hotel/hotel.module';
+import { RoomModule } from './room/room.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { HotelModule } from './hotel/hotel.module';
     }),
     AuthModule,
     HotelModule,
+    RoomModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'upload'), serveRoot: '/files'})
   ],

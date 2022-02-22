@@ -28,7 +28,7 @@ export class Room {
   @Prop()
   roomsAmount:number
 
-  @Prop()
+  @Prop({default:2})
   bedsAmount:number
 
   @Prop({transform:()=>undefined})

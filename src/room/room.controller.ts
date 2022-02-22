@@ -15,7 +15,7 @@ export class RoomController {
         return this.service.list(id,user)
     }
     @Get(":id")
-    info(@Param("id",new ValidatorPipe()) id:string,@GetUser() user:CUserDTO){
+    async info(@Param("id",new ValidatorPipe()) id:string,@GetUser() user:CUserDTO){
         return this.service.info(id,user)
     }
     @Post("order")
